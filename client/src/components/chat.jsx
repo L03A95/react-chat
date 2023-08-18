@@ -1,27 +1,41 @@
-import { useEffect } from "react"
+import { useState } from "react"
+import '../styles/chat.css'
 
 
 
-export default function Chat ({messageInput, sendMessage, chatMessages,socket, user}) {
+export default function Chat ({sendMessage, chatMessages,socket, user}) {
 
         socket.emit('connected', {
             user: user
         })
 
+        const [message, setMessage] = useState('')
+
+
+        const buttonHandler = () => {
+            if(!message) return
+            sendMessage(message)
+            setMessage('')
+        }
+
+        const messageHandler = (msj) => {
+            setMessage(msj)
+        }
 
     return (
         <>
-            <h2>Este es el chat</h2>
-            <div>
+        <div className="chat_wrapper">
+            <div className="chat">
                 {chatMessages.map(m => 
-                    <div>
-                        <hr></hr>
-                        <b>{m.user} - </b>
-                        <b>{m.message}</b>
+                    <div className={ m.user == user ? "message_wrapper self" :"message_wrapper"}>
+                        { m.user == user ? null : <span className="user_name">{m.user} - </span>}
+                        <span className="user_message">{m.message}</span>
                     </div>)}
             </div>
-            <input placeholder="Escribe tu mensaje" onChange={(e) => messageInput(e.target.value)}></input>
-            <button onClick={() => sendMessage()}>Enviar mensaje</button>
+            <input placeholder="Escribe tu mensaje" onChange={(e) => messageHandler(e.target.value)} value={message}></input>
+            <button onClick={() => buttonHandler()}>Enviar mensaje</button>
+        </div>
+            
         </>
     )
 }
