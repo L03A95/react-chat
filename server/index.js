@@ -14,6 +14,8 @@ io.on('connection', (socket) => {
     socket.on('chat_message', (data) => {
         io.emit('chat_message', data)
     })
+
+    return () => {socket.off('connected')}
 })
 
 server.listen(3001);

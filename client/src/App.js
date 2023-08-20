@@ -43,7 +43,6 @@ function App() {
 
   return (
     <div className="App">
-      
       <Routes>
         <Route path='/chat' element={ <Chat sendMessage={sendMessage}  chatMessages={chatMessages} socket={socket} user={username}/> } />
         <Route path='/' element={ <Login userInput={userInput} user={username}/>}/>

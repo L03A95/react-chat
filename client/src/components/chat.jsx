@@ -1,13 +1,17 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import '../styles/chat.css'
 
 
 
 export default function Chat ({sendMessage, chatMessages,socket, user}) {
 
+        
+
+        useEffect(() => {
         socket.emit('connected', {
             user: user
         })
+        },[])
 
         const [message, setMessage] = useState('')
 
