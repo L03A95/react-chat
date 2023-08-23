@@ -16,7 +16,8 @@ export default function Chat ({sendMessage, chatMessages,socket, user}) {
         const [message, setMessage] = useState('')
 
 
-        const buttonHandler = () => {
+        const buttonHandler = (e) => {
+            e.preventDefault()
             if(!message) return
             sendMessage(message)
             setMessage('')
@@ -32,12 +33,15 @@ export default function Chat ({sendMessage, chatMessages,socket, user}) {
             <div className="chat">
                 {chatMessages.map(m => 
                     <div className={ m.user == user ? "message_wrapper self" :"message_wrapper"}>
-                        { m.user == user ? null : <span className="user_name">{m.user} - </span>}
+                        { m.user == user ? null : <span className="user_name">{m.user}</span>}
                         <span className="user_message">{m.message}</span>
                     </div>)}
             </div>
-            <input placeholder="Escribe tu mensaje" onChange={(e) => messageHandler(e.target.value)} value={message}></input>
-            <button onClick={() => buttonHandler()}>Enviar mensaje</button>
+            <form>
+                <input placeholder="Escribe tu mensaje" className="msg_input" onChange={(e) => messageHandler(e.target.value)} value={message}></input>
+                <button className="msg_btn" onClick={(e) => buttonHandler(e)}>{">"}</button> 
+            </form>
+            
         </div>
             
         </>

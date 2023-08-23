@@ -7,6 +7,10 @@
     height: 90vh;
     border-radius: 10px;
     padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .chat {
@@ -25,11 +29,12 @@
     background-color: #2f4f7d;
     display: inline-block;
     margin: 10px;
-    padding: 3px;
+    padding: 5px;
     border-radius: 5px;
     width: fit-content;
     max-width: 70%;
     word-wrap: break-word;
+    text-align: left;
 }
 
 .self {
@@ -39,8 +44,29 @@
 
 .user_name {
     color: aliceblue;
+    display: block;
+    font-size: 12px;
+    color: #bfbfbd;
 }
 
 .user_message {
     width: 80px;
+}
+
+.msg_input {
+    width: 80%;
+    height: 30px;
+    border-radius: 20px;
+    padding-left: 15px;
+    background-color: #3f3f3d;
+    border: none;
+}
+
+.msg_btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #3f3f3d;
+    border: none;
+    color: #fff;
 }
