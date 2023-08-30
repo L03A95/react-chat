@@ -37,9 +37,9 @@ function App() {
     return () => {
       socket.off('chat_message')
     }
-
-
   },[])
+
+  
 
   return (
     <div className="App">

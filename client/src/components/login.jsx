@@ -8,9 +8,10 @@ export default function Login ({userInput, user}) {
 
     return (
         <>
-            <h2 className="login_title">Ingresa tu nombre de usuario</h2>
+            <h1  className="chat_title">Live chat</h1>
+            <span className="login_span">Enter your username</span>
             <input onChange={(e) => userInput(e.target.value)} className="login_input"/>
-            <Link to={ user.length > 3 && user.length < 20 ? '/chat' : '/'}><button className="login_btn">Entrar</button></Link>
+            <Link to={ user.length > 3 && user.length < 20 ? '/chat' : '/'}><button className="login_btn">Enter</button></Link>
         </>
     )
 }

@@ -1,14 +1,12 @@
 
 .chat_wrapper {
     background-color: #2f2f2d;
-    width: 70vw;
+    width: 95vw;
     margin: auto;
-    margin-top:50px;
     height: 90vh;
     border-radius: 10px;
     padding: 5px;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-evenly;
 }
@@ -51,22 +49,48 @@
 
 .user_message {
     width: 80px;
+    line-height: 20px;
+    color: #ffffff;
 }
 
 .msg_input {
-    width: 80%;
-    height: 30px;
+    width: 95%;
+    height: 40px;
     border-radius: 20px;
     padding-left: 15px;
     background-color: #3f3f3d;
     border: none;
+    color: #ffffff;
+    outline: none;
 }
 
+
 .msg_btn {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 20px;
     background-color: #3f3f3d;
     border: none;
     color: #fff;
+}
+
+.msg_form {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.chat_container {
+    display: flex;
+    margin-top:50px;
+}
+
+.users-list_wrapper {
+    background-color: #2f2f2d;
+    width: 10vw;
+}
+
+@media screen and (min-width: 640px){
+    .chat_wrapper {
+        width: 70vw;
+    }
 }
