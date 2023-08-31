@@ -5,9 +5,11 @@ import Login from './components/login';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Chat from './components/chat';
 
-//asda
 
-const socket = io('http://192.168.1.39:3001')
+const apiUrl = process.env.REACT_APP_API_URL;
+
+const socket = io(apiUrl)
+console.log('La API es ' + apiUrl)
 
 function App() {
 
