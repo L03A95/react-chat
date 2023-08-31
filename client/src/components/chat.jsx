@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import '../styles/chat.css'
 
 
@@ -7,7 +7,11 @@ export default function Chat ({sendMessage, chatMessages,socket, user}) {
 
         const[users, setUsers] = useState([])
 
+        const messagesRef = useRef(null);
         
+        const scrollToBottom = () => {
+            messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+          };
 
            const handleUnload = () => {
             socket.emit('disconected', {
@@ -43,6 +47,10 @@ export default function Chat ({sendMessage, chatMessages,socket, user}) {
             }
         },[])
 
+        useEffect(() => {
+            scrollToBottom();
+          }, [chatMessages]);
+
         const [message, setMessage] = useState('')
 
 
@@ -60,7 +68,7 @@ export default function Chat ({sendMessage, chatMessages,socket, user}) {
     return (
         <main className="chat_container">
             <div className="chat_wrapper">
-                <div className="chat">
+                <div className="chat" ref={messagesRef}>
                     {chatMessages.map((m,i) => 
                         <div className={ m.user == user ? "message_wrapper self" :"message_wrapper"} key={i}>
                             { m.user == user ? null : <span className="user_name">{m.user}</span>}
