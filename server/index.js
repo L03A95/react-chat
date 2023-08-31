@@ -1,3 +1,7 @@
+require('dotenv').config();
+const port = process.env.PORT;
+
+
 const http = require('http')
 
 const server = http.createServer()
@@ -29,4 +33,5 @@ io.on('connection', (socket) => {
     return () => {socket.off('connected')}
 })
 
-server.listen(3001);
+server.listen(port);
+console.log('Servidor funcando en puerto ' + port + ' :)')
