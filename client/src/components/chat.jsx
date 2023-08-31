@@ -27,14 +27,10 @@ export default function Chat ({sendMessage, chatMessages,socket, user}) {
             
 
             socket.on('connected', (data) => {
-                console.log('Se ha conectado ' + data.user)
-                console.log('usuarios conectados: ' + data.users)
                 setUsers(data.users)
             })
           
             socket.on('disconected', (data) => {
-                console.log('Se ha desconectado ' + data.user + ' :(')
-                console.log('usuarios conectados: ' + data.users)
                 setUsers(data.users)
             })
 
@@ -65,19 +61,20 @@ export default function Chat ({sendMessage, chatMessages,socket, user}) {
         <main className="chat_container">
             <div className="chat_wrapper">
                 <div className="chat">
-                    {chatMessages.map(m => 
-                        <div className={ m.user == user ? "message_wrapper self" :"message_wrapper"}>
+                    {chatMessages.map((m,i) => 
+                        <div className={ m.user == user ? "message_wrapper self" :"message_wrapper"} key={i}>
                             { m.user == user ? null : <span className="user_name">{m.user}</span>}
                             <span className="user_message">{m.message}</span>
                         </div>)}
                 </div>
                 <form className="msg_form">
-                    <input placeholder="Escribe tu mensaje" className="msg_input" onChange={(e) => messageHandler(e.target.value)} value={message}></input>
+                    <input placeholder="Type a message" className="msg_input" onChange={(e) => messageHandler(e.target.value)} value={message}></input>
                     <button className="msg_btn" onClick={(e) => buttonHandler(e)}>{">"}</button> 
                 </form>
             </div>
             <aside className="users-list_wrapper">
-                {users?.map((user) => <h5>{user}</h5>)}
+                <h3 className="user-list_title">Online users</h3>
+                {users?.map((user, i) => <h5 className="user-list" key={i}>🟢 {user}</h5>)}
             </aside>
             
         </main>
